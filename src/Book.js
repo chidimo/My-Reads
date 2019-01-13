@@ -19,7 +19,7 @@ class Book extends Component {
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                         <div className="book-shelf-changer">
                             <select onChange={(e) => this.moveBook(e.target.value)}>
-                                <option value="move" disabled>Move to...</option>
+                                <option selected value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
                                 <option value="read">Read</option>
@@ -35,7 +35,6 @@ class Book extends Component {
                         ))
                     }
                 </div>
-                <p>Temporary variable: {book.shelf}</p>
             </li>
         );
     };
