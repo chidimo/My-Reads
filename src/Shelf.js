@@ -6,12 +6,17 @@ class Shelf extends Component {
 
     render() {
 
+        const shelf_codes = {
+            currentlyReading : 'Currently Reading',
+            wantToRead : 'Want to read',
+            read : 'Read'
+        }
+
         const {name, books } = this.props
-        console.log(name, books)
+
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{name}</h2>
-                <hr/>
+                <h2 className="bookshelf-title">{shelf_codes[name]}</h2>
 
                <div className="bookshelf-books">
                     <ol className="books-grid">
