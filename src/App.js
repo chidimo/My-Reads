@@ -1,6 +1,8 @@
-import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
+
+import Shelf from './Shelf';
 
 class BooksApp extends React.Component {
 
@@ -17,7 +19,9 @@ class BooksApp extends React.Component {
 
     render() {
 
-        console.log(JSON.stringify(this.state))
+        const { books } = this.state
+
+        // console.log(JSON.stringify(this.state))
 
         const shelves = ['Currently Reading', 'Want to Read', 'Read']
         return (
@@ -28,7 +32,7 @@ class BooksApp extends React.Component {
 
                 {
                     shelves.map((shelf) => (
-                        <h2 key={shelf}>{shelf}</h2> // render shelf here
+                        <Shelf key={shelf} name={shelf} books={books}/>
                     ))
                 }
           </div>
