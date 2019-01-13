@@ -25,16 +25,18 @@ class BooksApp extends React.Component {
 
         const shelves = ['Currently Reading', 'Want to Read', 'Read']
         return (
-          <div>
-              <div className='list-books-title'>
-                <h1>My Reads - Chidi Orji</h1>
-              </div>
+            <div>
+                <div className='list-books-title'>
+                    <h1>My Reads - Chidi Orji</h1>
+                </div>
 
-                {
-                    shelves.map((shelf) => (
-                        <Shelf key={shelf} name={shelf} books={books}/>
-                    ))
-                }
+                <div className='list-books-content'>
+                    {
+                        shelves.map((shelf) => (
+                            <Shelf key={shelf} name={shelf} books={books}/>
+                        ))
+                    }
+                </div>
           </div>
         )
     }
