@@ -25,13 +25,13 @@ class BooksApp extends React.Component {
         return (
             <div>
                 <div className='list-books-title'>
-                    <h1>My Reads - Chidi Orji</h1>
+                    <h1>Chidi's Reads</h1>
                 </div>
 
                 <div className='list-books-content'>
                     {
                         shelves.map((shelf) => (
-                            <Shelf key={shelf} name={shelf} books={books} shelf={shelf}/>
+                            <Shelf key={shelf} shelf_code_name={shelf} books={books} shelf={shelf}/>
                         ))
                     }
                 </div>
