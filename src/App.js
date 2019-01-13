@@ -6,10 +6,6 @@ import Shelf from './Shelf';
 
 class BooksApp extends React.Component {
 
-    state = {
-        books: [],
-    }
-
     componentDidMount() {
         BooksAPI.getAll()
         .then((books) => {
@@ -20,10 +16,8 @@ class BooksApp extends React.Component {
     render() {
 
         const { books } = this.state
+        const shelves = ['currentlyReading', 'wantToRead', 'read']
 
-        // console.log(JSON.stringify(this.state))
-
-        const shelves = ['Currently Reading', 'Want to Read', 'Read']
         return (
             <div>
                 <div className='list-books-title'>
@@ -33,7 +27,7 @@ class BooksApp extends React.Component {
                 <div className='list-books-content'>
                     {
                         shelves.map((shelf) => (
-                            <Shelf key={shelf} name={shelf} books={books}/>
+                            <Shelf key={shelf} name={shelf} books={books} shelf={shelf}/>
                         ))
                     }
                 </div>
