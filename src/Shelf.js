@@ -21,15 +21,12 @@ class Shelf extends Component {
                     <ol className="books-grid">
         
                         {
-
                             books.filter((book) => (
                                 book.shelf === shelf_code_name
                             ))
                             .map((book) => (
                                 <Book key={book.id} book={book}/>
                             ))
-
-
                         }
                     </ol>
                </div>
