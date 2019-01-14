@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { Route } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 
@@ -24,17 +28,21 @@ class BooksApp extends React.Component {
 
         return (
             <div>
-                <div className='list-books-title'>
-                    <h1>Chidi's Reads</h1>
-                </div>
-
-                <div className='list-books-content'>
-                    {
-                        shelves.map((shelf) => (
-                            <Shelf key={shelf} shelf_code_name={shelf} books={books} shelf={shelf}/>
-                        ))
-                    }
-                </div>
+                <Route exact path='/' render={() => (
+                    <div>
+                        <div className='list-books-title'>
+                            <h1>Chidi's Reads</h1>
+                        </div>
+                        <div className='list-books-content'>
+                            {
+                                shelves.map((shelf) => (
+                                    <Shelf key={shelf} shelf_code_name={shelf} books={books} shelf={shelf}/>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    )}
+                />
           </div>
         )
     }
