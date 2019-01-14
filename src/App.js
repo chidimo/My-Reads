@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as BooksAPI from './BooksAPI';
 import './App.css';
@@ -43,6 +43,7 @@ class BooksApp extends React.Component {
                     </div>
                     )}
                 />
+                <Link to="/search"><div className="open-search">Search</div></Link>
           </div>
         )
     }
