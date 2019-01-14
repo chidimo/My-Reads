@@ -7,6 +7,7 @@ import * as BooksAPI from './BooksAPI';
 import './App.css';
 
 import Shelf from './Shelf';
+import Search from './Search';
 
 class BooksApp extends React.Component {
 
@@ -40,10 +41,15 @@ class BooksApp extends React.Component {
                                 ))
                             }
                         </div>
+                        <Link to="/search"><div className="open-search">Search</div></Link>
                     </div>
                     )}
                 />
-                <Link to="/search"><div className="open-search">Search</div></Link>
+
+                <Route path="/search" render={({ history }) => (
+                    <Search/>
+                )}
+                />
           </div>
         )
     }
