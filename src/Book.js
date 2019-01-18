@@ -4,7 +4,14 @@ import * as BooksAPI from './BooksAPI';
 
 class Book extends Component {
 
+    state = {
+        book_shelf : ''
+    }
+
     moveBook = (shelf) => {
+        this.setState((shelf) => (
+            {book_shelf: shelf}
+        ))
         BooksAPI.update(this.props.book, shelf)
     }
 
