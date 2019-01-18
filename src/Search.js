@@ -7,14 +7,17 @@ import * as BooksAPI from './BooksAPI';
 
 class Search extends Component {
 
-    state = {
-        books : []
-    }
+    state = {books : []}
 
     findBooks = (query) => {
         BooksAPI.search(query.trim(), 20)
         .then((books) => {
-            this.setState({books: books})
+            if (books.error) {
+                this.setState({books: []})
+            }
+            else {
+                this.setState({books: books})
+            }
         });
     }
 
@@ -22,7 +25,6 @@ class Search extends Component {
         const { books } = this.state
 
         return (
-
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link to='/' className='close-search'>Go back</Link>
@@ -37,11 +39,24 @@ class Search extends Component {
 
                 <div className="search-books-results">
                     <ol className="books-grid">
+
                         {
-                            books.map((book) => (
+                            books.length !==0 
+                            ?
+                            books
+                            .filter((book) => (
+                                book.imageLinks !== undefined
+                                ))
+                            .filter((book) => (
+                                book.authors !== undefined
+                            ))
+                            .map((book) => (
                                 <Book key={book.id} book={book}/>
                             ))
+                            :
+                            <p>No match for your query</p>
                         }
+
                     </ol>
                 </div>
             </div>
