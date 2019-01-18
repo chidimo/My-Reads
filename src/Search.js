@@ -10,15 +10,23 @@ class Search extends Component {
     state = {books : []}
 
     findBooks = (query) => {
-        BooksAPI.search(query.trim(), 20)
-        .then((books) => {
-            if (books.error) {
-                this.setState({books: []})
-            }
-            else {
-                this.setState({books: books})
-            }
-        });
+
+        if (!query) {
+            this.setState({books: []})
+        }
+
+        else {
+            BooksAPI.search(query, 20)
+            .then((books) => {
+                if (books.error) {
+                    this.setState({books: []})
+                }
+                else {
+                    this.setState({books: books})
+                }
+            });
+        }
+
     }
 
     render() {
