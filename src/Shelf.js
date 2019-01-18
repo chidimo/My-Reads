@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
-import * as BooksAPI from './BooksAPI';
-
 import Book from './Book.js';
 
 class Shelf extends Component {
-
-    moveBookToShelf = (new_shelf) => {
-        BooksAPI.update(this.props.book, new_shelf)
-    }
 
     render() {
 
