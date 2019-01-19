@@ -17,7 +17,7 @@ class Shelf extends Component {
             wantToRead : 'Want to read',
             read : 'Read'
         }
-        const {shelf_code_name, books } = this.props
+        const {shelf_code_name, books, book_mover } = this.props
 
         return (
             <div className="bookshelf">
@@ -31,7 +31,11 @@ class Shelf extends Component {
                                 book.shelf === shelf_code_name
                             ))
                             .map((book) => (
-                                <Book key={book.id} book={book}/>
+                                <Book
+                                    key={book.id}
+                                    book={book}
+                                    book_mover={book_mover}
+                                />
                             ))
                         }
                     </ol>
