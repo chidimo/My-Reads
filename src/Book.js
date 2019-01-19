@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
 
-import * as BooksAPI from './BooksAPI';
 
 class Book extends Component {
 
-    state = {
-        book_shelf : ''
-    }
-
-    moveBook = (shelf) => {
-        this.setState((shelf) => (
-            {book_shelf: shelf}
-        ))
-        BooksAPI.update(this.props.book, shelf)
-    }
-
     render() {
 
-        const { book } = this.props
+        const { book, book_mover } = this.props
 
         return (
             <li>
@@ -25,8 +13,8 @@ class Book extends Component {
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                         <div className="book-shelf-changer">
-                            <select onChange={(e) => this.moveBook(e.target.value)}>
-                                <option defaultValue value="move">Move to...</option>
+                            <select onChange={(e) => book_mover(e.target.value, book)}>
+                                <option defaultValue value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
                                 <option value="read">Read</option>
