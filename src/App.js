@@ -18,6 +18,19 @@ class BooksApp extends React.Component {
     componentDidMount() {
         BooksAPI.getAll()
         .then((books) => {
+            // console.log("abc ", books)
+            this.setState({books: books})
+        });
+    }
+
+    // Call the getAll method. This affects performance but
+    // it seems to be the only way, since the update function
+    // returns an object, each holding an array of book ids
+    // Is there any other way to get the updated books array?
+    moveBook = (shelf, book) => {
+        BooksAPI.update(book, shelf)
+        BooksAPI.getAll()
+        .then((books) => {
             this.setState({books: books})
         });
     }
@@ -37,7 +50,13 @@ class BooksApp extends React.Component {
                         <div className='list-books-content'>
                             {
                                 shelves.map((shelf) => (
-                                    <Shelf key={shelf} shelf_code_name={shelf} books={books} shelf={shelf}/>
+                                    <Shelf 
+                                        key={shelf}
+                                        books={books}
+                                        shelf={shelf}
+                                        shelf_code_name={shelf}
+                                        book_mover={(shelf, book) => this.moveBook(shelf, book)} // pass down the book moving function
+                                    />
                                 ))
                             }
                         </div>
@@ -47,7 +66,7 @@ class BooksApp extends React.Component {
                 />
 
                 <Route path="/search" render={({ history }) => (
-                    <Search/>
+                    <Search book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
                 )}
                 />
           </div>
