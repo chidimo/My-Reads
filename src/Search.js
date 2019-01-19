@@ -23,6 +23,7 @@ class Search extends Component {
 
     render() {
         const { books } = this.state
+        const { book_mover } = this.props
 
         return (
             <div className="search-books">
@@ -51,7 +52,7 @@ class Search extends Component {
                                 book.authors !== undefined
                             ))
                             .map((book) => (
-                                <Book key={book.id} book={book}/>
+                                <Book key={book.id} book={book} book_mover={book_mover}/>
                             ))
                             :
                             <p>No match for your query</p>
