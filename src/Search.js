@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { debounce } from 'throttle-debounce';
@@ -19,9 +18,8 @@ class Search extends Component {
     // meaningful message
     componentDidMount() {
         this.getValidQueryBooks = debounce(1000, this.getValidQueryBooks)
-        console.log("Home shelf ", this.props.home_shelf)
     }
-
+    
     getValidQueryBooks(query) {
         BooksAPI.search(query, 20)
         .then((books) => {
@@ -29,9 +27,22 @@ class Search extends Component {
                 this.setState({books: [], search_message: "No results for your search"})
             }
             else {
-                // console.log(books)
-                books.map((book) => (book.shelf="none"))
-                console.log(books)
+                const home_titles = this.props.home_shelf.map((book) => (
+                    book.title
+                ))
+                books.map((book) => {
+                    // check whether current book title is found in home shelf
+                    if (home_titles.includes(book.title)) {
+                        // Search for book title and set the shelf
+                        for (let bk of this.props.home_shelf) {
+                            if (bk.title === book.title) book.shelf = bk.shelf
+                        }
+                    }
+                    else {
+                        book.shelf="none"
+                    }
+                    return book
+                })
                 this.setState({books: books})
             }
         });
