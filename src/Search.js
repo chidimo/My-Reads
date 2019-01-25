@@ -9,9 +9,14 @@ import * as BooksAPI from './BooksAPI';
 
 class Search extends Component {
 
-    state = {books : []}
+    state = {books : [], search_message: "Type to search"}
 
 
+    // Two conditions:
+    // If search API is called on an empty query, it returns undefined
+    // If search term is not found, it returns {error: "empty query", items: []}
+    // In both cases, we want to return an empty book list, [], but display 
+    // meaningful message
     componentDidMount() {
         this.getValidQueryBooks = debounce(1000, this.getValidQueryBooks)
     }
@@ -20,7 +25,7 @@ class Search extends Component {
         BooksAPI.search(query, 20)
         .then((books) => {
             if (books.error) {
-                this.setState({books: []})
+                this.setState({books: [], search_message: "No results for your search"})
             }
             else {
                 this.setState({books: books})
@@ -29,12 +34,12 @@ class Search extends Component {
     }
 
     findBooks = (query) => {
-        if (!query) this.setState({books: []})
+        if (!query) this.setState({books: [], search_message: "Type to search"})
         else this.getValidQueryBooks(query)
     }
 
     render() {
-        const { books } = this.state
+        const { books, search_message } = this.state
         const { book_mover } = this.props
 
         return (
@@ -67,7 +72,7 @@ class Search extends Component {
                                 <Book key={book.id} book={book} book_mover={book_mover}/>
                             ))
                             :
-                            <p>No match for your query</p>
+                            <p>{search_message}</p>
                         }
 
                     </ol>
