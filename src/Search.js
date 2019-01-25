@@ -19,6 +19,7 @@ class Search extends Component {
     // meaningful message
     componentDidMount() {
         this.getValidQueryBooks = debounce(1000, this.getValidQueryBooks)
+        console.log("Home shelf ", this.props.home_shelf)
     }
 
     getValidQueryBooks(query) {
@@ -28,6 +29,9 @@ class Search extends Component {
                 this.setState({books: [], search_message: "No results for your search"})
             }
             else {
+                // console.log(books)
+                books.map((book) => (book.shelf="none"))
+                console.log(books)
                 this.setState({books: books})
             }
         });
