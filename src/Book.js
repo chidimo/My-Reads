@@ -1,8 +1,7 @@
 import React from 'react';
 
 
-const Book = ({book, book_mover}) => {
-    return (
+const Book = ({book, book_mover}) => (
         <li>
             <div className="book">
                 <div className="book-top">
@@ -29,6 +28,5 @@ const Book = ({book, book_mover}) => {
             </div>
         </li>
     );
-}
 
 export default Book
