@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { debounce } from 'throttle-debounce';
+
 import Book from './Book';
 import * as BooksAPI from './BooksAPI';
 
@@ -9,23 +11,26 @@ class Search extends Component {
 
     state = {books : []}
 
+
+    componentDidMount() {
+        this.getValidQueryBooks = debounce(1000, this.getValidQueryBooks)
+    }
+
+    getValidQueryBooks(query) {
+        BooksAPI.search(query, 20)
+        .then((books) => {
+            if (books.error) {
+                this.setState({books: []})
+            }
+            else {
+                this.setState({books: books})
+            }
+        });
+    }
+
     findBooks = (query) => {
-
-        if (!query) {
-            this.setState({books: []})
-        }
-
-        else {
-            BooksAPI.search(query, 20)
-            .then((books) => {
-                if (books.error) {
-                    this.setState({books: []})
-                }
-                else {
-                    this.setState({books: books})
-                }
-            });
-        }
+        if (!query) this.setState({books: []})
+        else this.getValidQueryBooks(query)
     }
 
     render() {
