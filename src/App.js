@@ -3,6 +3,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { BrowserRouter, Switch } from 'react-router-dom';
+
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 
@@ -42,37 +44,41 @@ class App extends React.Component {
         const shelves = ['currentlyReading', 'wantToRead', 'read']
 
         return (
-            <div>
-                <Route exact path='/' render={() => (
-                    <div>
-                        <div className='list-books-title'>
-                            <h1>Chidi's Reads</h1>
-                        </div>
-                        <div className='list-books-content'>
-                            {
-                                shelves.map((shelf) => (
-                                    <Shelf 
-                                        key={shelf}
-                                        books={books}
-                                        shelf={shelf}
-                                        shelf_code_name={shelf}
-                                        book_mover={(shelf, book) => this.moveBook(shelf, book)} // pass down the book moving function
-                                    />
-                                ))
-                            }
-                        </div>
-                        <Link to="/search"><div className="open-search">Search</div></Link>
-                    </div>
-                    )}
-                />
-
-                <Route path="/search" render={({ history }) => (
-                    <Search home_shelf={books} book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
-                )}
-                />
-
-                <Route component={NoMatch} />
-          </div>
+            <BrowserRouter>
+                <div>
+                    <Switch>
+                        <Route exact path='/' render={() => (
+                            <div>
+                                <div className='list-books-title'>
+                                    <h1>Chidi's Reads</h1>
+                                </div>
+                                <div className='list-books-content'>
+                                    {
+                                        shelves.map((shelf) => (
+                                            <Shelf 
+                                                key={shelf}
+                                                books={books}
+                                                shelf={shelf}
+                                                shelf_code_name={shelf}
+                                                book_mover={(shelf, book) => this.moveBook(shelf, book)} // pass down the book moving function
+                                            />
+                                        ))
+                                    }
+                                </div>
+                                <Link to="/search"><div className="open-search">Search</div></Link>
+                            </div>
+                            )}
+                        />
+        
+                        <Route path="/search" render={({ history }) => (
+                            <Search home_shelf={books} book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
+                        )}
+                        />
+        
+                        <Route component={NoMatch} />
+                    </Switch>
+              </div>
+            </BrowserRouter>
         )
     }
 }
