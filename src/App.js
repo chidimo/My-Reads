@@ -8,6 +8,7 @@ import './App.css';
 
 import Shelf from './Shelf';
 import Search from './Search';
+import NoMatch from './NoMatch'
 
 class App extends React.Component {
 
@@ -69,6 +70,8 @@ class App extends React.Component {
                     <Search home_shelf={books} book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
                 )}
                 />
+
+                <Route component={NoMatch} />
           </div>
         )
     }
