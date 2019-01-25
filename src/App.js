@@ -26,9 +26,27 @@ class BooksApp extends React.Component {
     // Call the getAll method. This affects performance but
     // it seems to be the only way, since the update function
     // returns an object, each holding an array of book ids
+    // the get API returns a promise which must resolve before
+    // the book item can be accessed. I don't know how to go about it yet.
     // Is there any other way to get the updated books array?
     moveBook = (shelf, book) => {
         BooksAPI.update(book, shelf)
+        // .then(books => {
+
+        //     let book_ids = []
+        //     for (let key of Object.keys(books)) {
+        //         const ids = books[key]
+        //         book_ids = book_ids.concat([ ...ids ])
+        //     }
+        //     const newBooks = []
+        //     book_ids.map((bookId) => (
+        //         BooksAPI.get(bookId)
+        //         .then(book => newBooks.push(book))
+        //     ))
+        //     console.log("new ", newBooks)
+        //     this.setState({books: newBooks})
+        // });
+        
         BooksAPI.getAll()
         .then((books) => {
             this.setState({books: books})
@@ -66,7 +84,7 @@ class BooksApp extends React.Component {
                 />
 
                 <Route path="/search" render={({ history }) => (
-                    <Search book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
+                    <Search home_shelf={books} book_mover={(shelf, book) => this.moveBook(shelf, book)}/>
                 )}
                 />
           </div>
