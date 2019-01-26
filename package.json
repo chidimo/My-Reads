@@ -28,7 +28,7 @@
     "sinon": "^7.2.3"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha --require test/setup.js --require @babel/register test/",
     "eject": "react-scripts eject"
