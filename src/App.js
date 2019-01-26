@@ -10,7 +10,8 @@ import './App.css';
 
 import Shelf from './Shelf';
 import Search from './Search';
-import NoMatch from './NoMatch'
+import NoMatch from './NoMatch';
+import Scroll from './Scroll';
 
 class App extends React.Component {
 
@@ -52,6 +53,8 @@ class App extends React.Component {
                                 <div className='list-books-title'>
                                     <h1>Chidi's Reads</h1>
                                 </div>
+
+                                <Scroll>
                                 <div className='list-books-content'>
                                     {
                                         shelves.map((shelf) => (
@@ -65,6 +68,8 @@ class App extends React.Component {
                                         ))
                                     }
                                 </div>
+                                </Scroll>
+
                                 <Link to="/search"><div className="open-search">Search</div></Link>
                             </div>
                             )}
