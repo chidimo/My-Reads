@@ -1,6 +1,6 @@
 # MyReads Project
 
-Project home page <https://my-react-bookshelf.herokuapp.com/>
+Project home page <https://react-shelf.herokuapp.com>
 
 ## The project
 
@@ -15,4 +15,4 @@ The app also incorporates a search function which can be launched by clicking on
 1. Open a terminal and `cd` into the `My-Reads`folder. You might need to run the terminal with administrative rights.
 1. Run `npm install` to install the project dependencies.
 1. Run  `npm start` to start the project.
-1. Visit <http://localhost:3000> on your browser to view the project.
+1. Visit <http://localhost:8080> on your browser to view the project.
