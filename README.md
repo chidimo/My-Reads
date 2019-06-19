@@ -1,6 +1,10 @@
 # MyReads Project
 
-Project home page <https://react-shelf.herokuapp.com>
+## App description
+
+The MyReads project is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project emphasizes using `React` to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
+
+App home page <https://react-shelf.herokuapp.com>
 
 ## The project
 
