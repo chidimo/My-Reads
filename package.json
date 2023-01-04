@@ -24,7 +24,7 @@
     "jsdom": "^13.1.0",
     "mocha": "^5.2.0",
     "npm": "^6.6.0",
-    "react-scripts": "0.9.5",
+    "react-scripts": "5.0.1",
     "sinon": "^7.2.3"
   },
   "scripts": {
